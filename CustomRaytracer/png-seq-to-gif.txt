@@ -1,0 +1,14 @@
+png to mp4 & gif:
+
+ffmpeg -f image2 -framerate 30 -i %04d.png out.mp4 && ffmpeg -i out.mp4 -vf "fps=30,split[s0][s1];[s0]palettegen=stats_mode=diff[p];[s1][p]paletteuse" -loop 0 out.gif
+
+ppm to mp4 and gif:
+ffmpeg -f image2 -framerate 15 -i %04d.ppm -s 800x800 -vcodec libx264 out.mp4 && ffmpeg -i out.mp4 -vf "fps=30,split[s0][s1];[s0]palettegen=stats_mode=diff[p];[s1][p]paletteuse" -loop 0 out.gif
+
+
+
+png to pam
+ffmpeg -i TEXTURE.png -pix_fmt rgba TEXTURE.pam
+
+specular of grayscale 255 = small visible circle
+specular of grayscale 0 = diffuse only
